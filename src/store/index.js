@@ -4,26 +4,26 @@ import axios from 'axios';
 
 export default createStore({
   state: {
-    catsJson: null,
+    cats: null,
     tags: null,
   },
 
   getters: {
-    getJson: state => {
-      return state.catsJson;
+    GET_JSON: state => {
+      return state.cats;
     },
-    getTags: state => {
+    GET_TAGS: state => {
       return state.tags;
 
     }
-  
+
   },
 
   mutations: {
-    SET_JSON(state, payload) {
-      state.catsJson = payload;
+    set_JSON(state, payload) {
+      state.cats = payload;
     },
-    SET_TAGS(state, payload) {
+    set_TAGS(state, payload) {
       const tagsArr = []
 
       for (let i of payload) {
@@ -35,17 +35,17 @@ export default createStore({
         }
       }
       state.tags = tagsArr;
-    } 
+    }
   },
   actions: {
 
-    async loadJson({ commit }, value) {
+    async loadCats({ commit }, value) {
       const errors = [];
       await axios
         .get(`https://pixabay.com/api/?key=25040045-450d2ba4de6c5fa6527432375&q=cats&image_type=all&per_page=100`)
         .then(response => {
 
-          
+
           commit(`SET_TAGS`, response.data.hits)
 
 
