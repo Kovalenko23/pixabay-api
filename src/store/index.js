@@ -8,6 +8,7 @@ export default createStore({
     tags: null,
   },
 
+
   getters: {
     GET_JSON: state => {
       return state.cats;
@@ -18,13 +19,14 @@ export default createStore({
     }
 
   },
+  //get data from store
 
   mutations: {
     set_JSON(state, payload) {
       state.cats = payload;
     },
     set_TAGS(state, payload) {
-      const tagsArr = []
+      const tagsArr = [] 
 
       for (let i of payload) {
         let arr = i.tags.split(',')
@@ -37,12 +39,12 @@ export default createStore({
       state.tags = tagsArr;
     }
   },
+  //change store
   actions: {
-
-    async loadCats({ commit }, value) {
+    async loadCats({ commit }, value, limit = 6) {
       const errors = [];
       await axios
-        .get(`https://pixabay.com/api/?key=25040045-450d2ba4de6c5fa6527432375&q=cats&image_type=all&per_page=100`)
+        .get(`https://pixabay.com/api/?key=25040045-450d2ba4de6c5fa6527432375&q=cats&image_type=all&per_page=` + limit)
         .then(response => {
 
 
@@ -62,4 +64,5 @@ export default createStore({
   },
   modules: {
   }
-})
+  //change loghic
+})  
