@@ -1,5 +1,5 @@
 <template>
-   <div class="input_form">
+  <div class="input_form">
     <input
       @keyup="debouncedHandler"
       type="text"
@@ -11,10 +11,9 @@
 
 <script>
 export default {
-
-}
+    
+};
 </script>
 
 <style>
-
 </style>

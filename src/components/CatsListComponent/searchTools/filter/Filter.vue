@@ -1,5 +1,5 @@
 <template>
-<label class="sort-label" for="sort">sort</label>
+  <label class="sort-label" for="sort">sort</label>
   <select
     v-model="selected"
     @change="sortJson"
@@ -15,10 +15,9 @@
 
 <script>
 export default {
-
-}
+   
+};
 </script>
 
 <style>
-
 </style>

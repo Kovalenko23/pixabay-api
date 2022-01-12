@@ -9,11 +9,11 @@ export default createStore({
   },
 
   getters: {
-    getJson: state => {
+    GET_JSON: state => {
       return state.catsList;
     },
 
-    getTags: state => {
+    GET_TAGS: state => {
       return state.tags;
     }
 

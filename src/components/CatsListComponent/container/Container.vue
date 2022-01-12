@@ -1,5 +1,5 @@
 <template>
-    <div class="container">
+  <div class="container">
     <div
       @click="card.delete = null"
       class="card"
@@ -56,11 +56,14 @@
 </template>
 
 <script>
-export default {
 
-}
+export default {
+    name: card
+};
+  
+  
+ 
 </script>
 
 <style>
-
 </style>
