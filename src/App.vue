@@ -1,9 +1,18 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <CatsList />
 </template>
 
+<script>
+import CatsList from "./components/CatsList.vue";
+
+export default {
+  name: "App",
+  components: {
+    CatsList,
+  },
+  created() {
+    this.$store.dispatch(`loadJson`);
+  },
+};
+</script>
 

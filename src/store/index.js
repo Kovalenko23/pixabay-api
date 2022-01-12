@@ -4,51 +4,37 @@ import axios from 'axios';
 
 export default createStore({
   state: {
-    cats: null,
+    catsList: null,
     tags: null,
   },
 
-
   getters: {
-    GET_JSON: state => {
-      return state.cats;
+    getJson: state => {
+      return state.catsList;
     },
-    GET_TAGS: state => {
-      return state.tags;
 
+    getTags: state => {
+      return state.tags;
     }
 
   },
-  //get data from store
 
   mutations: {
-    set_JSON(state, payload) {
-      state.cats = payload;
-    },
-    set_TAGS(state, payload) {
-      const tagsArr = [] 
+    SET_JSON(state, payload) {
 
-      for (let i of payload) {
-        let arr = i.tags.split(',')
-        for (let k of arr) {
-          if (!tagsArr.includes(k.trim())) {
-            tagsArr.push(k.trim())
-          }
-        }
-      }
-      state.tags = tagsArr;
-    }
+
+      state.catsList = payload;
+    },
+
+
   },
-  //change store
   actions: {
-    async loadCats({ commit }, value, limit = 6) {
+
+    async loadJson({ commit }, value) {
       const errors = [];
       await axios
-        .get(`https://pixabay.com/api/?key=25040045-450d2ba4de6c5fa6527432375&q=cats&image_type=all&per_page=` + limit)
+        .get(`https://pixabay.com/api/?key=25040037-a12ad33d617bc126ab0283a57&q=cats&image_type=all&per_page=40`)
         .then(response => {
-
-
-          commit(`SET_TAGS`, response.data.hits)
 
 
           if (value === `Likes`) commit(`SET_JSON`, response.data.hits.sort((a, b) => b.likes - a.likes));
@@ -64,5 +50,4 @@ export default createStore({
   },
   modules: {
   }
-  //change loghic
-})  
+})
